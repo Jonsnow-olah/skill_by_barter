@@ -1,0 +1,46 @@
+{
+  "expo": {
+    "name": "SkillByBarter_App",
+    "slug": "SkillByBarter_App",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/images/barter_logo.png",
+    "scheme": "fashion",
+    "userInterfaceStyle": "automatic",
+    "splash": {
+      "image": "./assets/images/mammoth2.png",
+      "resizeMode": "cover",
+      "backgroundColor": "#000000"
+    },
+    "newArchEnabled": true,
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.anonymous.SkillByBarter-App"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/images/barter_logo.png",
+        "backgroundColor": "#ffffff"
+      },
+      "edgeToEdgeEnabled": true,
+      "package": "com.anonymous.SkillByBarter_App",
+      "googleServicesFile": "./google-services.json"
+    },
+    "web": {
+      "bundler": "metro",
+      "output": "static",
+      "favicon": "./assets/images/barter_logo.png"
+    },
+    "experiments": {
+      "typedRoutes": true
+    },
+    "extra": {
+      "eas": {
+        "projectId": "a6b17d90-d9de-456f-865a-b371a98c30f4"
+      }
+    },
+    "plugins": [
+      "expo-av"
+    ]
+  }
+}
