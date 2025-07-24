@@ -40,7 +40,6 @@
       }
     },
     "plugins": [
-      "expo-av"
     ]
   }
 }
