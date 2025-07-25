@@ -203,6 +203,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: "bold",
     marginBottom: 20,
+    fontFamily: "Poppins-Regular",
   },
   grid: {
     paddingBottom: 60,

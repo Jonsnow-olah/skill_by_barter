@@ -1,3 +1,4 @@
+// app/(tabs)/profile.tsx
 import React, { useState, useEffect, useCallback } from "react";
 import {
   View, Text, StyleSheet, Image, TouchableOpacity, TextInput, ScrollView, Alert,
@@ -235,8 +236,20 @@ export default function Profile() {
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: "#fff" },
   topSpacing: { paddingTop: 40, paddingBottom: 40 },
-  videoHeading: { fontSize: 16, fontWeight: "600", textAlign: "center", marginTop: 20 },
-  videoSub: { fontSize: 13, color: "#666", textAlign: "center", marginBottom: 12 },
+  videoHeading: {
+    fontSize: 16,
+    fontWeight: "600",
+    textAlign: "center",
+    marginTop: 20,
+    fontFamily: "Poppins-Bold",
+  },
+  videoSub: {
+    fontSize: 13,
+    color: "#666",
+    textAlign: "center",
+    marginBottom: 12,
+    fontFamily: "Poppins",
+  },
   videoBanner: {
     marginHorizontal: 20,
     height: 140,
@@ -245,12 +258,16 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
-  videoBannerText: { color: "#555", fontSize: 14 },
+  videoBannerText: {
+    color: "#555",
+    fontSize: 14,
+    fontFamily: "Poppins",
+  },
   pictureRow: { flexDirection: "row", paddingHorizontal: 20, marginVertical: 20 },
   picWrapper: { position: "relative", marginRight: 10 },
   picThumb: { width: 100, height: 100, borderRadius: 8, backgroundColor: "#eee" },
   plusBox: { flex: 1, alignItems: "center", justifyContent: "center" },
-  plusText: { color: "#888", fontSize: 12, marginTop: 4 },
+  plusText: { color: "#888", fontSize: 12, marginTop: 4, fontFamily: "Poppins" },
   input: {
     marginHorizontal: 20,
     marginTop: 12,
@@ -258,10 +275,26 @@ const styles = StyleSheet.create({
     borderColor: "#ccc",
     borderRadius: 8,
     paddingHorizontal: 12,
+    paddingVertical: 10,
     height: 40,
+    fontSize: 14,
+    lineHeight: 18,
+    fontFamily: "Poppins",
   },
-  sectionTitle: { marginHorizontal: 20, fontSize: 18, fontWeight: "600", marginTop: 20 },
-  subText: { marginHorizontal: 20, fontSize: 13, color: "#666", marginBottom: 8 },
+  sectionTitle: {
+    marginHorizontal: 20,
+    fontSize: 18,
+    fontWeight: "600",
+    marginTop: 20,
+    fontFamily: "Poppins-Bold",
+  },
+  subText: {
+    marginHorizontal: 20,
+    fontSize: 13,
+    color: "#666",
+    marginBottom: 8,
+    fontFamily: "Poppins",
+  },
   proofGrid: {
     flexDirection: "row",
     flexWrap: "wrap",
@@ -292,7 +325,12 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginTop: 20,
   },
-  saveButtonText: { color: "#fff", fontSize: 16, fontWeight: "600" },
+  saveButtonText: {
+    color: "#fff",
+    fontSize: 16,
+    fontWeight: "600",
+    fontFamily: "Poppins",
+  },
   toastContainer: {
     backgroundColor: "#333",
     paddingHorizontal: 14,
@@ -301,5 +339,9 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     marginTop: 50,
   },
-  toastText: { color: "#fff", fontSize: 13 },
+  toastText: {
+    color: "#fff",
+    fontSize: 13,
+    fontFamily: "Poppins",
+  },
 });

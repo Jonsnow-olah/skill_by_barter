@@ -1,46 +1,32 @@
-// app/IntroVideoScreen.tsx
-import React, { useCallback, useRef, useState } from "react";
-import { View, StyleSheet, TouchableOpacity, Text } from "react-native";
-import { Video, ResizeMode } from "expo-av";
+// app/intro.tsx
+
+import { View, StyleSheet, TouchableOpacity, Text, Image } from "react-native";
 import { useRouter } from "expo-router";
 
 type Props = { onFinish: () => void };
 
 export default function IntroVideoScreen({ onFinish }: Props) {
-  const videoRef = useRef<Video>(null);
   const router = useRouter();
-  const [ready, setReady] = useState(false);
-
-  const onReady = useCallback(() => setReady(true), []);
 
   const handleStart = () => {
-     console.log("Get Started tapped");
-      onFinish();
-      router.navigate("/auth");  
-
+    console.log("Get Started tapped");
+    onFinish();
+    router.replace("/auth");
   };
 
   return (
     <View style={styles.container}>
-      <Video
-        ref={videoRef}
-        source={require("../assets/images/welcome.mp4")}
-        style={StyleSheet.absoluteFill}  // fill entire parent
-        resizeMode={ResizeMode.COVER}
-        shouldPlay
-        isLooping
-        onReadyForDisplay={onReady}
+      <Image
+        source={require("../assets/images/mammoth2.png")}
+        style={StyleSheet.absoluteFillObject}
+        resizeMode="cover"
       />
-      {ready && (
-        <TouchableOpacity style={styles.button} onPress={handleStart}>
-          <Text style={styles.buttonText}>Get Started</Text>
-        </TouchableOpacity>
-      )}
+      <TouchableOpacity style={styles.button} onPress={handleStart}>
+        <Text style={styles.buttonText}>Get Started</Text>
+      </TouchableOpacity>
     </View>
   );
 }
-
-
 
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: "#000" },
