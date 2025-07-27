@@ -76,7 +76,7 @@ export default function AuthCodeScreen() {
         Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
         triggerShake(true);
         Toast.show({ type: "info", text1: "Login successful" });
-        setTimeout(() => router.replace("/(tabs)"), 1000);
+        setTimeout(() => router.replace("/onboarding/name"), 1000);
       } else {
         Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error);
         triggerShake(false);
