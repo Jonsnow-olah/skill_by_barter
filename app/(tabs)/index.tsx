@@ -24,12 +24,15 @@ import MatchModal from "../matchModal";
 
 export default function Index() {
   const router = useRouter();
-
+  const [profilePromptVisible, setProfilePromptVisible] = useState(false);
   const [location, setLocation] = useState<Location.LocationObject | null>(null);
   const [searchModalVisible, setSearchModalVisible] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedGender, setSelectedGender] = useState<"Male" | "Female">("Male");
-  const [matchVisible, setMatchVisible] = useState(false); // ✅ state for match modal
+  const [matchVisible, setMatchVisible] = useState(false); //  state for match modal
+
+  
+
 
   const slideAnim = useRef(new Animated.Value(0)).current;
 
@@ -80,6 +83,19 @@ export default function Index() {
 
     getLocationPermission();
   }, []);
+
+  useEffect(() => {
+  const checkRedirectFlag = async () => {
+    const shouldShow = await AsyncStorage.getItem("showProfilePrompt");
+    if (shouldShow === "true") {
+      setProfilePromptVisible(true);
+      await AsyncStorage.removeItem("showProfilePrompt"); // so it only shows once
+    }
+  };
+
+  checkRedirectFlag();
+}, []);
+
 
   const handleNotificationClick = () => {
     router.push("/notifications");
@@ -197,8 +213,35 @@ export default function Index() {
         </KeyboardAvoidingView>
       </Modal>
 
-      {/* ✅ Match Modal */}
+      {/* Match Modal */}
+
       <MatchModal visible={matchVisible} onClose={() => setMatchVisible(false)} />
+
+      {/* End of Match Modal */}
+
+        <Modal
+          visible={profilePromptVisible}
+          animationType="fade"
+          transparent
+          hardwareAccelerated
+        >
+          <View style={overlayStyles.backdrop}>
+            <View style={overlayStyles.container}>
+              <Text style={overlayStyles.title}>
+                You need to complete your profile before you start exploring
+              </Text>
+              <TouchableOpacity
+                style={overlayStyles.button}
+                onPress={() => {
+                  setProfilePromptVisible(false);
+                  router.push("/profile");
+                }}
+              >
+                <Text style={overlayStyles.buttonText}>Complete your profile</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </Modal>
     </View>
   );
 }
@@ -446,3 +489,40 @@ const cardStyles = StyleSheet.create({
   zIndex: 10,
   },
 });
+const overlayStyles = StyleSheet.create({
+  backdrop: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "rgba(0,0,0,0.7)",
+  },
+  container: {
+    backgroundColor: "#fff",
+    padding: 30,
+    borderRadius: 10,
+    width: "85%",
+    elevation: 5,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+  },
+  title: {
+    fontSize: 16,
+    textAlign: "center",
+    marginBottom: 20,
+    fontFamily: "Poppins",
+    color: "#333",
+  },
+  button: {
+    backgroundColor: "#d43c4f",
+    paddingVertical: 12,
+    borderRadius: 8,
+  },
+  buttonText: {
+    color: "#fff",
+    textAlign: "center",
+    fontWeight: "bold",
+  },
+});
+
