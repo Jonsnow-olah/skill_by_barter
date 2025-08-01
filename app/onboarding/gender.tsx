@@ -3,10 +3,12 @@ import React, { useState } from "react";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { useRouter } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
+import { useOnboardingStore } from "@/app/store/onboarding";
 
 export default function GenderPreference() {
   const router = useRouter();
-  const [selected, setSelected] = useState("");
+  // const [selected, setSelected] = useState("");
+  const { genderPreference, setGenderPreference} = useOnboardingStore();
 
   const handleFinish = () => {
     router.push("/onboarding/done");
@@ -24,14 +26,14 @@ export default function GenderPreference() {
 
         <View style={styles.buttonGroup}>
           <TouchableOpacity
-            style={[styles.optionBtn, selected === "Male" && styles.selectedBtn]}
-            onPress={() => setSelected("Male")}
+            style={[styles.optionBtn, genderPreference === "Male" && styles.selectedBtn]}
+            onPress={() => setGenderPreference("Male")}
           >
             <Text style={styles.optionText}>Male</Text>
           </TouchableOpacity>
           <TouchableOpacity
-            style={[styles.optionBtn, selected === "Female" && styles.selectedBtn]}
-            onPress={() => setSelected("Female")}
+            style={[styles.optionBtn, genderPreference === "Female" && styles.selectedBtn]}
+            onPress={() => setGenderPreference("Female")}
           >
             <Text style={styles.optionText}>Female</Text>
           </TouchableOpacity>

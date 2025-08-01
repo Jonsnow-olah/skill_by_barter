@@ -2,14 +2,31 @@ import React, { useEffect } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import ConfettiCannon from "react-native-confetti-cannon";
 import { useRouter } from "expo-router";
+import { useOnboardingStore } from "@/app/store/onboarding";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { saveProfileData } from "../utils/storage";
 
 export default function DonePage() {
   const router = useRouter();
+  
+  const {
+    fullName,
+    skillOffer,
+    skillLearn,
+    genderPreference
+  } = useOnboardingStore();
 
   useEffect(() => {
+    const profile = {
+      fullName,
+      skillOffer,
+      skillLearn,
+      genderPreference,
+    };
+    
     const setRedirectFlagAndNavigate = async () => {
       await AsyncStorage.setItem("showProfilePrompt", "true");
+      saveProfileData(profile);
       setTimeout(() => {
         router.replace("/(tabs)");
       }, 2000);

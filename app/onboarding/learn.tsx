@@ -3,10 +3,12 @@ import React, { useState } from "react";
 import { View, Text, StyleSheet, TextInput, TouchableOpacity } from "react-native";
 import { useRouter } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
+import { useOnboardingStore } from "@/app/store/onboarding";
 
 export default function LearnPage() {
   const router = useRouter();
-  const [skill, setSkill] = useState("");
+  // const [skill, setSkill] = useState("");
+  const { skillLearn, setSkillLearn} = useOnboardingStore();
 
   return (
     <View style={styles.container}>
@@ -21,8 +23,8 @@ export default function LearnPage() {
         <TextInput
           style={styles.input}
           placeholder="e.g. UI/UX Design, Public Speaking"
-          value={skill}
-          onChangeText={setSkill}
+          value={skillLearn}
+          onChangeText={(text) => setSkillLearn(text)}
         />
 
         <TouchableOpacity style={styles.nextBtn} onPress={() => router.push("/onboarding/gender")}>

@@ -7,17 +7,22 @@ import {
   TouchableOpacity,
   Dimensions,
 } from "react-native";
-import { useRouter } from "expo-router";
+import { useRouter, useLocalSearchParams } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
+import { useOnboardingStore } from "@/app/store/onboarding";
+
 
 const { width } = Dimensions.get("window");
 
 export default function NameScreen() {
   const router = useRouter();
-  const [name, setName] = useState("");
+  const { name } = useLocalSearchParams<{ name: string }>();
+  // const [name, setName] = useState("");
+  const { fullName, setFullName } = useOnboardingStore();
+
 
   const handleNext = () => {
-    if (!name) return;
+    if (!fullName) return;
     router.push({ pathname: "/onboarding/skill", params: { name } });
   };
 
@@ -37,9 +42,9 @@ export default function NameScreen() {
 
         <TextInput
           style={styles.input}
-          placeholder="Full name"
-          value={name}
-          onChangeText={setName}
+          placeholder="Enter your Full name"
+          value={fullName || undefined}
+          onChangeText={(text) => setFullName(text)}
         />
 
         <TouchableOpacity style={styles.nextButton} onPress={handleNext}>

@@ -8,14 +8,16 @@ import {
 } from "react-native";
 import { useRouter, useLocalSearchParams } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
+import { useOnboardingStore } from "@/app/store/onboarding";
 
 export default function SkillScreen() {
   const router = useRouter();
   const { name } = useLocalSearchParams<{ name: string }>();
-  const [skill, setSkill] = useState("");
+  // const [skill, setSkill] = useState("");
+  const { skillOffer, setSkillOffer} = useOnboardingStore();
 
   const handleNext = () => {
-    if (!skill) return;
+    if (!skillOffer) return;
     router.push({ pathname: "/onboarding/learn", params: { name } });
   };
 
@@ -41,8 +43,8 @@ export default function SkillScreen() {
         <TextInput
           style={styles.input}
           placeholder="e.g. Video editing, Copywriting"
-          value={skill}
-          onChangeText={setSkill}
+          value={skillOffer}
+          onChangeText={ (text) => setSkillOffer(text)}
         />
 
         <TouchableOpacity style={styles.nextButton} onPress={handleNext}>

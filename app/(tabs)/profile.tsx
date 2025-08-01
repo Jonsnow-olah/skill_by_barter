@@ -7,6 +7,8 @@ import * as ImagePicker from "expo-image-picker";
 import * as Location from "expo-location";
 import Toast from "react-native-toast-message";
 import { Ionicons } from "@expo/vector-icons";
+import { useOnboardingStore } from "@/app/store/onboarding";
+
 
 export default function Profile() {
   const maxProof = 8;
@@ -14,15 +16,17 @@ export default function Profile() {
   const [thumbPics, setThumbPics] = useState<string[]>([]);
   const [proofPics, setProofPics] = useState<string[]>([]);
 
-  const [fullName, setFullName] = useState("");
-  const [skill, setSkill] = useState("");
-  const [skillLearn, setSkillLearn] = useState("");
-  const [gender, setGender] = useState("");
+  const {fullName, setFullName } = useOnboardingStore();
+  const {skillLearn, setSkillLearn } = useOnboardingStore();
+  const {skillOffer, setSkillOffer } = useOnboardingStore();
+  const {genderPreference, setGenderPreference } = useOnboardingStore();
   const [yearsExp, setYearsExp] = useState("");
   const [locationAddress, setLocationAddress] = useState("");
   const [unsavedChanges, setUnsavedChanges] = useState(false);
 
   const markChanged = useCallback(() => setUnsavedChanges(true), []);
+
+ 
 
   useEffect(() => {
     (async () => {
@@ -86,7 +90,7 @@ export default function Profile() {
     }, ImagePicker.MediaTypeOptions.Images);
 
   const handleSave = () => {
-    if (!fullName || !skill || !skillLearn || !gender || !yearsExp || proofPics.length === 0) {
+    if (!fullName || !skillOffer || !skillLearn || !genderPreference || !yearsExp || proofPics.length === 0) {
       Toast.show({ type: "info", text1: "Fill all the required fields" });
       return;
     }
@@ -136,6 +140,7 @@ export default function Profile() {
         <TextInput
           style={styles.input}
           placeholder="Full Name *"
+          placeholderTextColor="#999"
           value={fullName}
           onChangeText={(t) => {
             setFullName(t);
@@ -145,15 +150,17 @@ export default function Profile() {
         <TextInput
           style={styles.input}
           placeholder="Skill *"
-          value={skill}
+          placeholderTextColor="#999"
+          value={skillOffer}
           onChangeText={(t) => {
-            setSkill(t);
+            setSkillOffer(t);
             markChanged();
           }}
         />
         <TextInput
           style={styles.input}
           placeholder="Skill you want to learn *"
+          placeholderTextColor="#999"
           value={skillLearn}
           onChangeText={(t) => {
             setSkillLearn(t);
@@ -163,15 +170,17 @@ export default function Profile() {
         <TextInput
           style={styles.input}
           placeholder="Gender *"
-          value={gender}
+          placeholderTextColor="#999"
+          value={genderPreference}
           onChangeText={(t) => {
-            setGender(t);
+            setGenderPreference(t);
             markChanged();
           }}
         />
         <TextInput
           style={styles.input}
           placeholder="Years of experience *"
+          placeholderTextColor="#999"
           keyboardType="numeric"
           value={yearsExp}
           onChangeText={(t) => {
@@ -181,6 +190,7 @@ export default function Profile() {
         />
         <TextInput
           style={[styles.input, { backgroundColor: "#eee" }]}
+          placeholderTextColor="#999"
           value={locationAddress}
           editable={false}
         />
@@ -280,6 +290,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     lineHeight: 18,
     fontFamily: "Poppins",
+    
   },
   sectionTitle: {
     marginHorizontal: 20,
