@@ -19,6 +19,10 @@
     "@react-navigation/bottom-tabs": "^7.3.10",
     "@react-navigation/elements": "^2.3.8",
     "@react-navigation/native": "^7.1.6",
+<<<<<<< HEAD
+=======
+    "dotenv": "^17.2.1",
+>>>>>>> 8716618 (Reinitialize Git repository)
     "expo": "53.0.20",
     "expo-av": "~15.1.6",
     "expo-blur": "~14.1.5",

@@ -15,7 +15,14 @@
     "newArchEnabled": true,
     "ios": {
       "supportsTablet": true,
+<<<<<<< HEAD
       "bundleIdentifier": "com.anonymous.SkillByBarter-App"
+=======
+      "bundleIdentifier": "com.anonymous.SkillByBarter-App",
+      "config": {
+        "googleMapsApiKey": "process.env.GOOGLE_MAPS_API_KEY"
+      }
+>>>>>>> 8716618 (Reinitialize Git repository)
     },
     "android": {
       "adaptiveIcon": {
@@ -24,7 +31,15 @@
       },
       "edgeToEdgeEnabled": true,
       "package": "com.anonymous.SkillByBarter_App",
+<<<<<<< HEAD
       "googleServicesFile": "./google-services.json"
+=======
+      "config": {
+        "googleMaps": {
+          "apiKey": "process.env.GOOGLE_MAPS_API_KEY"
+        }
+      }
+>>>>>>> 8716618 (Reinitialize Git repository)
     },
     "web": {
       "bundler": "metro",
@@ -43,4 +58,8 @@
       "expo-video"
     ]
   }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 8716618 (Reinitialize Git repository)
