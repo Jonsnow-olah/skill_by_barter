@@ -35,6 +35,25 @@ const dummyDetails = {
       require("@/assets/images/party5.jpg"),
     ],
   },
+  "2": {
+    title: "Tech Hangout @ Yaba",
+    banner: require("@/assets/images/party1.jpg"),
+    description:
+      "Join a relaxed weekend hangout with developers, designers and freelancers. Come network, play games and have fun.",
+    location: "Yaba, Lagos",
+    fullAddress: "Civic Innovation Hub, 50 Herbert Macaulay Way, Yaba, Lagos",
+    date: "Saturday, July 20 · 4:00 PM",
+    startTime: "2024-07-20T16:00:00",
+    coordinates: { latitude: 6.5124, longitude: 3.3792 },
+    attendees: 34,
+    price: "₦2,000",
+    ticketUrl: "https://techhangout.example.com",
+    gallery: [
+      require("@/assets/images/party3.jpg"),
+      require("@/assets/images/party4.jpg"),
+      require("@/assets/images/party5.jpg"),
+    ],
+  },
 };
 
 export default function EventDetail() {
